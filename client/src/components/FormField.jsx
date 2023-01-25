@@ -41,4 +41,4 @@ const FormField = ({
   </div>
 );
 
-export default FormField
+export default FormField;

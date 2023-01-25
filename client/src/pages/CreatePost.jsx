@@ -5,7 +5,6 @@ import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
 
-
 const CreatePost = () => {
   const navigate = useNavigate();
 
@@ -47,7 +46,7 @@ const CreatePost = () => {
         setGeneratingImg(false);
       }
     } else {
-      alert('Please Enter a prompt');
+      alert('Please provide proper prompt');
     }
   };
 
@@ -62,13 +61,12 @@ const CreatePost = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ form }),
+          body: JSON.stringify({ ...form }),
         });
 
         await response.json();
         alert('Success');
         navigate('/');
-        
       } catch (err) {
         alert(err);
       } finally {
@@ -80,12 +78,13 @@ const CreatePost = () => {
   };
 
   return (
-      <section className="max-w-7xl mx-auto">
-        <div>
-          <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
-          <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Generate an imaginative image through DALL-E AI and share it with the community</p>
-        </div>
-        <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+    <section className="max-w-7xl mx-auto">
+      <div>
+        <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
+        <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Generate an imaginative image through DALL-E AI and share it with the community</p>
+      </div>
+
+      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
           <FormField
             labelName="Your Name"
@@ -100,7 +99,7 @@ const CreatePost = () => {
             labelName="Prompt"
             type="text"
             name="prompt"
-            placeholder="A Man falling in Love with his Computer, digital art…"
+            placeholder="An Impressionist oil painting of sunflowers in a purple vase…"
             value={form.prompt}
             handleChange={handleChange}
             isSurpriseMe
@@ -150,10 +149,8 @@ const CreatePost = () => {
           </button>
         </div>
       </form>
-      </section>
+    </section>
+  );
+};
 
-
-  )
-}
-
-export default CreatePost
+export default CreatePost;
