@@ -22,7 +22,7 @@ router.route('/').post(async (req, res) => {
   try {
     const { prompt } = req.body;
 
-    const aiResponse = await openai..Image.create({
+    const aiResponse = await openai.Image.create({
       model: "dall-e-3",
       prompt,
       n: 1,
